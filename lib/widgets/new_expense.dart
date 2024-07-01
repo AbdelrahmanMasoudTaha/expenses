@@ -31,7 +31,14 @@ class _NewExpenseState extends State<NewExpense> {
           TextField(
             maxLength: 40,
             controller: _titleController,
-            decoration: const InputDecoration(label: Text('Title')),
+            decoration: InputDecoration(
+              label: Text(
+                'Title',
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.secondary),
+              ),
+            ),
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           ),
           const SizedBox(
             height: 20,
@@ -42,10 +49,17 @@ class _NewExpenseState extends State<NewExpense> {
                 child: TextField(
                   keyboardType: TextInputType.number,
                   controller: _amountController,
-                  decoration: const InputDecoration(
-                    label: Text('Amount'),
+                  decoration: InputDecoration(
+                    label: Text(
+                      'Amount',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
+                    ),
                     prefixText: '\$',
+                    fillColor: Theme.of(context).colorScheme.secondary,
                   ),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
                 ),
               ),
               const SizedBox(
@@ -94,11 +108,13 @@ class _NewExpenseState extends State<NewExpense> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'Category',
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
+                  color:
+                      Theme.of(context).colorScheme.secondary.withOpacity(0.7),
                 ),
               ),
               const SizedBox(
@@ -110,7 +126,11 @@ class _NewExpenseState extends State<NewExpense> {
                       .map(
                         (e) => DropdownMenuItem(
                           value: e,
-                          child: Text(e.name.toUpperCase()),
+                          child: Text(
+                            e.name.toUpperCase(),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary),
+                          ),
                         ),
                       )
                       .toList(),

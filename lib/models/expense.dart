@@ -29,4 +29,20 @@ class Expense {
   final Category category;
 }
 
+class ExpenseBucket {
+  ExpenseBucket({required this.category, required this.expenses});
+  ExpenseBucket.forCategory(
+      {required this.category, required List<Expense> allExpenses})
+      : expenses = allExpenses.where((e) => e.category == category).toList();
+  final Category category;
+  final List<Expense> expenses;
+  double get totalExpenses {
+    double sum = 0;
+    for (var ex in expenses) {
+      sum += ex.amount;
+    }
+    return sum;
+  }
+}
+
 enum Category { food, travel, leisure, work }

@@ -1,3 +1,4 @@
+import 'package:expenses_app/chart/chart.dart';
 import 'package:expenses_app/models/expense.dart';
 import 'package:expenses_app/widgets/expenses_list/expenses_list.dart';
 import 'package:expenses_app/widgets/new_expense.dart';
@@ -27,6 +28,21 @@ class _ExpensesState extends State<Expenses> {
         title: 'Cenima',
         amount: 30,
         date: DateTime.now()),
+    Expense(
+        category: Category.work,
+        title: 'Fultter Course',
+        amount: 90.9,
+        date: DateTime.now()),
+    Expense(
+        category: Category.food,
+        title: 'Breakfast',
+        amount: 15.7,
+        date: DateTime.now()),
+    Expense(
+        category: Category.leisure,
+        title: 'Cenima',
+        amount: 30,
+        date: DateTime.now()),
   ];
   void _addExpense(Expense expense) {
     setState(() {
@@ -34,11 +50,17 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
+  void _removeExpense(Expense expense) {
+    setState(() {
+      _regesteredExpenses.remove(expense);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Expenses"),
+        title: const Text("My Expenses"),
         centerTitle: true,
         actions: [
           IconButton(
@@ -58,9 +80,12 @@ class _ExpensesState extends State<Expenses> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("..."),
+            Chart(expenses: _regesteredExpenses),
             Expanded(
-              child: ExpensesList(expenses: _regesteredExpenses),
+              child: ExpensesList(
+                expenses: _regesteredExpenses,
+                onRemoveExpense: _removeExpense,
+              ),
             ),
           ],
         ),
