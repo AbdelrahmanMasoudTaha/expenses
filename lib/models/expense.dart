@@ -13,7 +13,7 @@ class Expense {
   static const categoryIcons = {
     Category.food: Icons.lunch_dining,
     Category.leisure: Icons.movie,
-    Category.travel: Icons.travel_explore,
+    Category.travel: Icons.directions_car_sharp,
     Category.work: Icons.work,
   };
   Expense(

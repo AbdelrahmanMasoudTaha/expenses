@@ -28,6 +28,11 @@ class _ExpensesState extends State<Expenses> {
         amount: 30,
         date: DateTime.now()),
   ];
+  void _addExpense(Expense expense) {
+    setState(() {
+      _regesteredExpenses.add(expense);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,9 @@ class _ExpensesState extends State<Expenses> {
                 showModalBottomSheet(
                     context: context,
                     builder: (ctx) {
-                      return const NewExpense();
+                      return NewExpense(
+                        onAddExpense: _addExpense,
+                      );
                     });
               },
               icon: const Icon(Icons.add))
