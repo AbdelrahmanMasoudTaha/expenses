@@ -58,6 +58,7 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Expenses"),
@@ -77,18 +78,33 @@ class _ExpensesState extends State<Expenses> {
         ],
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Chart(expenses: _regesteredExpenses),
-            Expanded(
-              child: ExpensesList(
-                expenses: _regesteredExpenses,
-                onRemoveExpense: _removeExpense,
+        child: width < 500
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Chart(expenses: _regesteredExpenses),
+                  Expanded(
+                    child: ExpensesList(
+                      expenses: _regesteredExpenses,
+                      onRemoveExpense: _removeExpense,
+                    ),
+                  ),
+                ],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Chart(expenses: _regesteredExpenses),
+                  ),
+                  Expanded(
+                    child: ExpensesList(
+                      expenses: _regesteredExpenses,
+                      onRemoveExpense: _removeExpense,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

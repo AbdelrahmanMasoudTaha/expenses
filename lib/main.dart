@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:expenses_app/widgets/expenses.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    log(MediaQuery.of(context).size.width.toString());
+    log(MediaQuery.of(context).size.height.toString());
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
